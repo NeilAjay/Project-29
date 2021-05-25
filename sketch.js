@@ -30,22 +30,33 @@ function setup() {
   block5 = new Block(420,275,30,40);
   block6 = new Block(450,275,30,40);
   block7 = new Block(480,275,30,40);
+
+  block17 = new Block(635,175,30,40);
+  block18 = new Block(665,175,30,40);
+  block19 = new Block(695,175,30,40);
+  block20 = new Block(725,175,30,40);
+  block21 = new Block(755,175,30,40);
   //level two
   block8 = new Block(330,235,30,40);
   block9 = new Block(360,235,30,40);
   block10 = new Block(390,235,30,40);
   block11 = new Block(420,235,30,40);
   block12 = new Block(450,235,30,40);
+
+  block22 = new Block(665,135,30,40);
+  block23 = new Block(695,135,30,40);
+  block24 = new Block(725,135,30,40);
   //level three
   block13 = new Block(360,195,30,40);
   block14 = new Block(390,195,30,40);
   block15 = new Block(420,195,30,40);
   //top
   block16 = new Block(390,155,30,40);
+  block25 = new Block(695,95,30,40);
 
-
-  
-
+ //polygon holder with slings
+ polygon = Bodies.circle(50,200,20);
+ World.add(world,polygon);
 }
 function draw() {
   background(56,44,44); 
@@ -56,6 +67,7 @@ function draw() {
 
   ground.display();
   stand1.display();
+  stand2.display();
   
   strokeWeight(2);
   stroke(15);
@@ -67,18 +79,43 @@ function draw() {
   block5.display();
   block6.display();
   block7.display();
+
+  block17.display();
+  block18.display();
+  block19.display();
+  block20.display();
+  block21.display();
   fill("pink");
   block8.display();
   block9.display();
   block10.display();
   block11.display();
   block12.display();
+
+  block25.display();
   fill("turquoise");
   block13.display();
   block14.display();
   block15.display();
+
+  block22.display();
+  block23.display();
+  block24.display();
   fill("grey");
   block16.display();
  
 
+
+ slingShot = new SlingShot(this.polygon,{x:100,y:200});
+
+ imageMode(CENTER)
+ image(polygon_img ,polygon.position.x,polygon.position.y,40,40);
+}
+
+function mouseDragged() {
+  Matter.Body.setPosition(polygon, {x:mouseX, y:mouseY})
+}
+
+function mouseReleased(){
+  slingShot.fly()
 }
